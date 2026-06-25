@@ -115,20 +115,56 @@ const VisualizerPreview = ({ onEnterVisualizer, onExit, onUploadRoom, onSwitchTo
     // For "both", keep current category or default to "Floors"
   }, [visualizationType]);
   
-  // Material swatches - using actual tile images
-  const materialSwatches = [
-    { id: "marble-white-001", image: "/tiles/marble-tile.jpg", name: "Carrara Marble" },
-    { id: "oak-wood-002", image: "/tiles/oak-wood.webp", name: "Natural Oak" },
-    { id: "oak-wood-001", image: "/tiles/wooden-tile.jpg", name: "Natural Wood" },
-    { id: "slate-grey-003", image: "/tiles/design-tile.jpg", name: "Slate Grey" },
-    // Add more swatches to fill the grid
-    ...Array.from({ length: 28 }, (_, i) => ({
-      id: `swatch-${i + 4}`,
-      image: null,
-      color: `#${['d6c7b0', 'bfbfbf', '8c8c8c', 'f3f3f3', 'a8a8a8', 'e0e0e0'][i % 6]}`,
-      name: `Material ${i + 5}`
-    }))
+  const floorSwatches = [
+    { id: "37289", image: "/tiles/floor/37289.jpg", color: "#E8D5B0" },
+    { id: "37282", image: "/tiles/floor/37282.jpg", color: "#C8A878" },
+    { id: "37272", image: "/tiles/floor/37272.jpg", color: "#D4B896" },
+    { id: "37284", image: "/tiles/floor/37284.jpg", color: "#F0E8D0" },
+    { id: "37288", image: "/tiles/floor/37288.jpg", color: "#C8C0B8" },
+    { id: "37184", image: "/tiles/floor/37184.jpg", color: "#F5F0EC" },
+    { id: "37286", image: "/tiles/floor/37286.jpg", color: "#F0EEE8" },
+    { id: "37099", image: "/tiles/floor/37099.jpg", color: "#F5F2F0" },
+    { id: "37203", image: "/tiles/floor/37203.jpg", color: "#EDE8E0" },
+    { id: "37334", image: "/tiles/floor/37334.jpg", color: "#F0ECD8" },
+    { id: "37105", image: "/tiles/floor/37105.jpg", color: "#F5F0E8" },
+    { id: "37190", image: "/tiles/floor/37190.jpg", color: "#E8E0D8" },
+    { id: "37330", image: "/tiles/floor/37330.jpg", color: "#ECD8B8" },
+    { id: "37312", image: "/tiles/floor/37312.jpg", color: "#C8B898" },
+    { id: "37287", image: "/tiles/floor/37287.jpg", color: "#A0A0B0" },
+    { id: "37327", image: "/tiles/floor/37327.jpg", color: "#909098" },
+    { id: "37328", image: "/tiles/floor/37328.jpg", color: "#787888" },
+    { id: "37171", image: "/tiles/floor/37171.jpg", color: "#9090A8" },
+    { id: "37308", image: "/tiles/floor/37308.jpg", color: "#A8A8B0" },
+    { id: "37306", image: "/tiles/floor/37306.jpg", color: "#B0B0B8" },
+    { id: "37296", image: "/tiles/floor/37296.jpg", color: "#404040" },
+    { id: "37191", image: "/tiles/floor/37191.jpg", color: "#3A2818" },
   ];
+
+  const wallSwatches = [
+    { id: "34261",   image: "/tiles/wall/34261.jpg",   color: "#C1440E" },
+    { id: "26283",   image: "/tiles/wall/26283.jpg",   color: "#A0391A" },
+    { id: "2374",    image: "/tiles/wall/2374.jpg",    color: "#B04020" },
+    { id: "13228",   image: "/tiles/wall/13228.jpg",   color: "#9B3520" },
+    { id: "13226",   image: "/tiles/wall/13226.jpg",   color: "#6B1A1A" },
+    { id: "34471",   image: "/tiles/wall/34471.jpg",   color: "#B84020" },
+    { id: "26284",   image: "/tiles/wall/26284.jpg",   color: "#8B4513" },
+    { id: "13232",   image: "/tiles/wall/13232.jpg",   color: "#A0522D" },
+    { id: "20466",   image: "/tiles/wall/20466.jpg",   color: "#F5F0E8" },
+    { id: "13230",   image: "/tiles/wall/13230.jpg",   color: "#F0EDE8" },
+    { id: "13227",   image: "/tiles/wall/13227.jpg",   color: "#FAFAF8" },
+    { id: "35773AB", image: "/tiles/wall/35773AB.jpg", color: "#4A8060" },
+    { id: "38210",   image: "/tiles/wall/38210.jpg",   color: "#5B9EA0" },
+    { id: "38214",   image: "/tiles/wall/38214.jpg",   color: "#4A8090" },
+    { id: "38217",   image: "/tiles/wall/38217.jpg",   color: "#C8B870" },
+    { id: "10116",   image: "/tiles/wall/10116.jpg",   color: "#6B4E8B" },
+    { id: "10134",   image: "/tiles/wall/10134.jpg",   color: "#2B3A5E" },
+    { id: "37435",   image: "/tiles/wall/37435.jpg",   color: "#C8A040" },
+    { id: "37476",   image: "/tiles/wall/37476.jpg",   color: "#C07020" },
+    { id: "37482",   image: "/tiles/wall/37482.jpg",   color: "#1A1A2E" },
+    { id: "21467",   image: "/tiles/wall/21467.jpg",   color: "#1A1A1A" },
+  ];
+
+  const materialSwatches = selectedCategory === "Floors" ? floorSwatches : wallSwatches;
 
   // Filter renders based on selected room type
   const filteredRenders = roomRenders.filter(render => render.type === selectedRoomType);
@@ -647,10 +683,16 @@ const VisualizerPreview = ({ onEnterVisualizer, onExit, onUploadRoom, onSwitchTo
                     {swatch.image ? (
                       <img
                         src={swatch.image}
-                        alt={swatch.name}
+                        alt={swatch.id}
                         className={`w-16 h-16 rounded-lg shadow-sm border object-cover transition-transform hover:scale-105 ${
                           isSelected ? 'border-[#FF6B35] border-2' : 'border-[#E6E6E6]'
                         }`}
+                        onError={(e) => {
+                          const t = e.target as HTMLImageElement;
+                          t.style.display = 'none';
+                          const parent = t.parentElement;
+                          if (parent) parent.style.backgroundColor = (swatch as any).color || '#d6c7b0';
+                        }}
                       />
                     ) : (
                       <div

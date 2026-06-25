@@ -60,15 +60,30 @@ const upload = multer({
   }
 });
 
-// Tile images mapping - update with your local image paths
+// Tile images mapping
 const tileImages = {
-  'marble-white-001': path.join(__dirname, 'public', 'tiles', 'marble-tile.jpg'),
-  'oak-wood-002': path.join(__dirname, 'public', 'tiles', 'oak-wood.webp'),
-  'oak-wood-001': path.join(__dirname, 'public', 'tiles', 'wooden-tile.jpg'),
-  'slate-grey-003': path.join(__dirname, 'public', 'tiles', 'design-tile.jpg'),
-  'terracotta-004': path.join(__dirname, 'public', 'tiles', 'terracotta-004.jpg'),
-  'black-granite-005': path.join(__dirname, 'public', 'tiles', 'black-granite-005.jpg'),
-  'hexagon-white-006': path.join(__dirname, 'public', 'tiles', 'hexagon-white-006.jpg')
+  '37289': path.join(__dirname, 'public', 'tiles', 'floor', '37289.jpg'),
+  '37282': path.join(__dirname, 'public', 'tiles', 'floor', '37282.jpg'),
+  '37272': path.join(__dirname, 'public', 'tiles', 'floor', '37272.jpg'),
+  '37284': path.join(__dirname, 'public', 'tiles', 'floor', '37284.jpg'),
+  '37288': path.join(__dirname, 'public', 'tiles', 'floor', '37288.jpg'),
+  '37184': path.join(__dirname, 'public', 'tiles', 'floor', '37184.jpg'),
+  '37286': path.join(__dirname, 'public', 'tiles', 'floor', '37286.jpg'),
+  '37099': path.join(__dirname, 'public', 'tiles', 'floor', '37099.jpg'),
+  '37203': path.join(__dirname, 'public', 'tiles', 'floor', '37203.jpg'),
+  '37334': path.join(__dirname, 'public', 'tiles', 'floor', '37334.jpg'),
+  '37105': path.join(__dirname, 'public', 'tiles', 'floor', '37105.jpg'),
+  '37190': path.join(__dirname, 'public', 'tiles', 'floor', '37190.jpg'),
+  '37330': path.join(__dirname, 'public', 'tiles', 'floor', '37330.jpg'),
+  '37312': path.join(__dirname, 'public', 'tiles', 'floor', '37312.jpg'),
+  '37287': path.join(__dirname, 'public', 'tiles', 'floor', '37287.jpg'),
+  '37327': path.join(__dirname, 'public', 'tiles', 'floor', '37327.jpg'),
+  '37328': path.join(__dirname, 'public', 'tiles', 'floor', '37328.jpg'),
+  '37171': path.join(__dirname, 'public', 'tiles', 'floor', '37171.jpg'),
+  '37308': path.join(__dirname, 'public', 'tiles', 'floor', '37308.jpg'),
+  '37306': path.join(__dirname, 'public', 'tiles', 'floor', '37306.jpg'),
+  '37296': path.join(__dirname, 'public', 'tiles', 'floor', '37296.jpg'),
+  '37191': path.join(__dirname, 'public', 'tiles', 'floor', '37191.jpg'),
 };
 
 // Health check endpoint
